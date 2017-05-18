@@ -23,6 +23,7 @@ call vundle#end()
 
 filetype plugin indent on
 
+set clipboard=unnamed "use system clipboard
 set backspace=indent,eol,start
 set ruler
 set number
