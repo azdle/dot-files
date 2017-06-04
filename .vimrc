@@ -19,6 +19,12 @@ Plugin 'tpope/vim-fugitive'
 
 Plugin 'rust-lang/rust.vim'
 
+Plugin 'craigemery/vim-autotag'
+
+Plugin 'bronson/vim-trailing-whitespace'
+
+Plugin 'majutsushi/tagbar'
+
 call vundle#end()
 
 filetype plugin indent on
@@ -35,12 +41,15 @@ syntax on
 
 set mouse=a
 
+" <C-\> opens tag in new tab
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+
 " for sytastic
 hi clear SignColumn
 
 " ----- jistr/vim-nerdtree-tabs -----
 " open/close nerdtree tabs with \t
-nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
+nmap <silent> <leader>f :NERDTreeTabsToggle<CR>
 " open on startup
 "let g:nerdtree_tabs_open_on_console_startup = 1
 
@@ -65,3 +74,8 @@ let g:syntastic_rust_rustc_exe = 'cargo check'
 let g:syntastic_rust_rustc_fname = ''
 let g:syntastic_rust_rustc_args = '--'
 let g:syntastic_rust_checkers = ['rustc']
+
+let g:syntastic_c_checkers = ['clangcheck', 'clanglint']
+
+" ----- tagbar -----
+nmap <silent> <leader>t :TagbarToggle<CR>
