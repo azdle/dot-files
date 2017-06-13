@@ -28,6 +28,8 @@ Plugin 'bronson/vim-trailing-whitespace'
 
 Plugin 'majutsushi/tagbar'
 
+Plugin 'jremmen/vim-ripgrep'
+
 if (has("nvim"))
 	Plugin 'autozimu/LanguageClient-neovim'
 
