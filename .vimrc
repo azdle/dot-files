@@ -59,6 +59,8 @@ set hlsearch
 
 syntax on
 
+set cursorline
+
 set mouse=a
 
 " <C-\> opens tag in new tab
