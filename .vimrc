@@ -4,6 +4,9 @@ filetype off
 
 inoremap <special> jk <ESC>
 
+" For vundle
+set shell=/bin/bash
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
