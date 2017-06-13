@@ -28,6 +28,23 @@ Plugin 'bronson/vim-trailing-whitespace'
 
 Plugin 'majutsushi/tagbar'
 
+if (has("nvim"))
+	Plugin 'autozimu/LanguageClient-neovim'
+
+	" (Optional) Multi-entry selection UI.
+	Plugin 'junegunn/fzf'
+	" (Optional) Multi-entry selection UI.
+	Plugin 'Shougo/denite.nvim'
+
+	" (Optional) Completion integration with deoplete.
+	Plugin 'Shougo/deoplete.nvim'
+	" (Optional) Completion integration with nvim-completion-manager.
+	Plugin 'roxma/nvim-completion-manager'
+
+	" (Optional) Showing function signature and inline doc.
+	Plugin 'Shougo/echodoc.vim'
+endif
+
 call vundle#end()
 
 filetype plugin indent on
@@ -82,3 +99,21 @@ let g:syntastic_c_checkers = ['clangcheck', 'clanglint']
 
 " ----- tagbar -----
 nmap <silent> <leader>t :TagbarToggle<CR>
+
+
+if (has("nvim"))
+	" ----- language server -----
+	"" Required for operations modifying multiple buffers like rename.
+	set hidden
+
+	let g:LanguageClient_serverCommands = {
+	    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+	    \ }
+
+	" Automatically start language servers.
+	let g:LanguageClient_autoStart = 1
+
+	nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+	nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+	nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+endif
