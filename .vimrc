@@ -2,39 +2,24 @@ set nocompatible
 
 inoremap <special> jk <ESC>
 
-" auto install vim-plug
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
 " heler fn for loading plugins by variant, but always keeping them installed
 function! Cond(cond, ...)
   let opts = get(a:000, 0, {})
   return a:cond ? opts : extend(opts, { 'on': [], 'for': [] })
 endfunction
 
-" For vundle
-"set shell=/run/current-system/sw/bin/bash
+call plug#begin('~/.local/share/nvim/plugged')
 
-call plug#begin('~/.vim/bundle')
-
-Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
-
-"Plug 'vim-syntastic/syntastic'
-
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
+"Plug 'airblade/vim-gitgutter'
+"Plug 'tpope/vim-fugitive'
 
 Plug 'rust-lang/rust.vim'
 
-Plug 'craigemery/vim-autotag'
+"Plug 'craigemery/vim-autotag'
 
 Plug 'bronson/vim-trailing-whitespace'
 
-Plug 'majutsushi/tagbar'
+"Plug 'majutsushi/tagbar'
 
 Plug 'jremmen/vim-ripgrep'
 
@@ -63,17 +48,6 @@ syntax on
 set cursorline
 
 set mouse=a
-
-" <C-\> opens tag in new tab
-map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-
-" ----- jistr/vim-nerdtree-tabs -----
-" open/close nerdtree tabs with \t
-nmap <silent> <leader>f :NERDTreeTabsToggle<CR>
-
-" ----- tagbar -----
-nmap <silent> <leader>t :TagbarToggle<CR>
-
 
 if (has("nvim"))
 	" ----- language server -----
